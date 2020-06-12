@@ -20,6 +20,7 @@ import android.os.storage.StorageManager
 import android.telephony.CarrierConfigManager
 import android.telephony.SubscriptionManager
 import android.telephony.TelephonyManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
@@ -59,6 +60,9 @@ fun Activity.hideKeyboard(view: View) {
     inputMethodManager?.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
+fun Any.logD(content:String="null"){
+    Log.d(this::class.java.simpleName,content)
+}
 
 val Context.versionName: String
     get() = packageManager.getPackageInfo(packageName, 0).versionName

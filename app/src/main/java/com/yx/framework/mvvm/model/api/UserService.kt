@@ -1,5 +1,6 @@
 package com.yx.framework.mvvm.model.api
 
+import com.yx.framework.mvvm.model.bean.CoinBean
 import com.yx.framework.mvvm.model.bean.UserBean
 import retrofit2.http.*
 
@@ -13,7 +14,7 @@ interface UserService {
     suspend fun login(
         @Field("username") username: String,
         @Field("password") password: String
-    ): Response<String>
+    ): UserBean
     //注册
     @POST("user/register")
     @FormUrlEncoded
@@ -23,8 +24,14 @@ interface UserService {
         @Field("repassword") repassword: String
     ): UserBean
     //退出
-    @GET("/logout/json")
-    suspend fun logout(): Response<String>
+    @GET("logout/json")
+    suspend fun logout(): String
+
+
+
+    //获取个人积分
+    @GET("lg/coin/userinfo/json")
+    suspend fun coin(): CoinBean
 
 
 

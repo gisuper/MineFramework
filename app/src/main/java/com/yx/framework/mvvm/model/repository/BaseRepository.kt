@@ -18,11 +18,11 @@ open class BaseRepository {
                     return Response(
                         code = -1,
                         msg = e.message.toString(),
-                        data = UserBean()
+                        data = null
                     ) as Response<T>
                 }
                 else -> {//正常不会走到这里
-                    return Response(code = -2, msg = "不可预知错误", data = UserBean()) as Response<T>
+                    return Response(code = -2, msg = "不可预知错误", data = null) as Response<T>
                 }
             }
             e.printStackTrace()

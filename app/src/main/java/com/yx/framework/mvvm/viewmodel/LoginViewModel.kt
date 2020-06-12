@@ -1,29 +1,28 @@
 package com.yx.framework.mvvm.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.material.tabs.TabLayout
 import com.yx.framework.mvvm.model.api.Response
 import com.yx.framework.mvvm.model.bean.UserBean
 import com.yx.framework.mvvm.model.repository.UserRepository
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
- * Created by yangxiong on 2020/6/10.
+ * Created by yangxiong on 2020/6/12.
  */
-class RegisterModel : ViewModel() {
-    val TAG = "RegisterModel"
+class LoginViewModel : ViewModel(){
+    val TAG = "LoginViewModel"
     val userBean = MutableLiveData<Response<UserBean>>()
     val repository = UserRepository()
 
-    fun register(
+    fun login(
         username: String,
-        password: String,
-        repassword: String
+        password: String
     ) {
         GlobalScope.launch(Dispatchers.IO) {
-            val response = repository.register(username, password, repassword)
+            val response = repository.login(username, password)
             GlobalScope.launch(Dispatchers.Main) {
                 userBean.value = response
             }
