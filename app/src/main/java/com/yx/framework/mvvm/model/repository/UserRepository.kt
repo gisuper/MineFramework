@@ -6,6 +6,7 @@ import com.yx.framework.mvvm.model.api.Response
 import com.yx.framework.mvvm.model.bean.CoinBean
 import com.yx.framework.mvvm.model.bean.UserBean
 import retrofit2.HttpException
+import java.security.cert.CertStoreSpi
 
 /**
  * Created by yangxiong on 2020/6/10.
@@ -23,9 +24,12 @@ class UserRepository : BaseRepository() {
     suspend fun login(username: String, password: String): Response<UserBean> {
         return excute { userServiceImpl.login(username, password) }
     }
+
     suspend fun coin(): Response<CoinBean> {
         return excute { userServiceImpl.coin() }
     }
 
-
+    suspend fun logout(): Response<CoinBean> {
+        return excute { userServiceImpl.logout() }
+    }
 }

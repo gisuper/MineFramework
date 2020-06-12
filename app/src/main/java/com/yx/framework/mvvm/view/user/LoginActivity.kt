@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.yx.framework.R
 import com.yx.framework.ext.logD
 import com.yx.framework.ext.startActivity
+import com.yx.framework.ext.toast
 import com.yx.framework.mvvm.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -35,6 +36,8 @@ class LoginActivity : AppCompatActivity() {
             if (it.code == 0 && it.data.errorCode >= 0){
                 startActivity(MainActivity::class.java)
                 finish()
+            }else{
+                toast(it.data.errorMsg)
             }
         })
     }

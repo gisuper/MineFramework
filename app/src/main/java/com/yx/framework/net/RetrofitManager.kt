@@ -1,10 +1,10 @@
 package com.yx.framework.net
 
 import android.util.Log
-import com.yx.framework.common.CONNECT_TIMEOUT
-import com.yx.framework.common.HOST_URL
-import com.yx.framework.common.READ_TIMEOUT
-import com.yx.framework.common.WRITE_TIMEOUT
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
+import com.yx.framework.common.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -18,8 +18,11 @@ import java.util.concurrent.TimeUnit
  * Created by yangxiong on 2020/6/9.
  */
 class RetrofitManager private constructor() {
-
     val TAG = "RetrofitManager"
+    private val cookieJar by lazy {
+        PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(App.context))
+    }
+
 
     companion object {
         val instance: RetrofitManager by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
@@ -27,8 +30,8 @@ class RetrofitManager private constructor() {
         }
     }
 
-    private val logInterceptor = HttpLoggingInterceptor{
-        Log.d("RetrofitManager","${it}")
+    private val logInterceptor = HttpLoggingInterceptor {
+        Log.d("RetrofitManager", "${it}")
     }
 
     init {
@@ -48,6 +51,7 @@ class RetrofitManager private constructor() {
         .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
         .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
         .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
+        .cookieJar(cookieJar)
         .addInterceptor(logInterceptor)
         .addInterceptor(headInterceptor)
         .build()

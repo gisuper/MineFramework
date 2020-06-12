@@ -25,7 +25,7 @@ interface UserService {
     ): UserBean
     //退出
     @GET("logout/json")
-    suspend fun logout(): String
+    suspend fun logout(): CoinBean
 
 
 

@@ -11,6 +11,7 @@ import com.yx.framework.ext.startActivity
 import com.yx.framework.mvvm.viewmodel.LoginViewModel
 import com.yx.framework.mvvm.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,20 +20,15 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        val usernameString = intent.getStringExtra("username")
-
-        username.setText(usernameString)
-
-        regist.setOnClickListener {
-            startActivity(RegisterActivity::class.java)
-            finish()
-        }
-        login.setOnClickListener {
+        coin.setOnClickListener {
             viewModel.coin()
         }
 
         viewModel.coinBean.observe(this, Observer {
-            logD(it.data.toString())
+//            logD(it.data.toString())
         })
+        logout.setOnClickListener {
+            viewModel.logout()
+        }
     }
 }

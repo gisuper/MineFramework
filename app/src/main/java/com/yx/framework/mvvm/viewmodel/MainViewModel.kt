@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.yx.framework.mvvm.model.api.Response
 import com.yx.framework.mvvm.model.bean.CoinBean
-import com.yx.framework.mvvm.model.bean.UserBean
 import com.yx.framework.mvvm.model.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -21,6 +20,14 @@ class MainViewModel : ViewModel() {
     fun coin() {
         GlobalScope.launch(Dispatchers.IO) {
             val response = repository.coin()
+            GlobalScope.launch(Dispatchers.Main) {
+                coinBean.value = response
+            }
+        }
+    }
+    fun logout() {
+        GlobalScope.launch(Dispatchers.IO) {
+            val response = repository.logout()
             GlobalScope.launch(Dispatchers.Main) {
                 coinBean.value = response
             }
