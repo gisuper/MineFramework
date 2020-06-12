@@ -24,7 +24,7 @@ interface UserService {
         @Field("repassword") repassword: String
     ): UserBean
     //退出
-    @GET("logout/json")
+    @GET("user/logout/json")
     suspend fun logout(): CoinBean
 
 
