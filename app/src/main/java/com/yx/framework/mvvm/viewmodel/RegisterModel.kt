@@ -22,7 +22,7 @@ class RegisterModel : ViewModel() {
         password: String,
         repassword: String
     ) {
-        GlobalScope.launch(Dispatchers.Default) {
+        GlobalScope.launch(Dispatchers.IO) {
             val response = repository.register(username, password, repassword)
             GlobalScope.launch(Dispatchers.Main) {
                 userBean.value = response;

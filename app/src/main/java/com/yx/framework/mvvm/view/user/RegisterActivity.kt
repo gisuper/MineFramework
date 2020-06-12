@@ -1,13 +1,13 @@
 package com.yx.framework.mvvm.view.user
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.yx.framework.R
 import com.yx.framework.databinding.ActivityRegisterBinding
+import com.yx.framework.ext.toast
 import com.yx.framework.mvvm.viewmodel.RegisterModel
 
 class RegisterActivity : AppCompatActivity() {
@@ -24,25 +24,12 @@ class RegisterActivity : AppCompatActivity() {
         model.userBean.observe(this, Observer {
             if (it.code >= 0) {
                 if (it.data.errorCode == 0) {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "注册成功：${it.data.data.nickname}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    toast("注册成功：${it.data.data.nickname}")
                 } else {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "注册失败：${it.data.errorMsg}",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
+                    toast("注册失败：${it.data.errorMsg}")
                 }
             } else {
-                Toast.makeText(
-                    this@RegisterActivity,
-                    "注册失败：${it.msg}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                toast("注册失败：${it.msg}")
             }
         })
         binding.submit.setOnClickListener {

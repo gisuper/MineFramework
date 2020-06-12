@@ -39,8 +39,6 @@ class RetrofitManager private constructor() {
         chain.proceed(
             chain.request().newBuilder()
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Connection", "Keep-Alive")
-                .addHeader("Content-Encoding", "gzip")
                 .build()
         )
     }
