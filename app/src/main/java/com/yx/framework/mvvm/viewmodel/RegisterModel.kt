@@ -3,6 +3,7 @@ package com.yx.framework.mvvm.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.android.material.tabs.TabLayout
 import com.yx.framework.mvvm.model.api.Response
 import com.yx.framework.mvvm.model.bean.UserBean
@@ -22,11 +23,9 @@ class RegisterModel : ViewModel() {
         password: String,
         repassword: String
     ) {
-        GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val response = repository.register(username, password, repassword)
-            GlobalScope.launch(Dispatchers.Main) {
-                userBean.value = response
-            }
+            userBean.value = response
         }
     }
 }

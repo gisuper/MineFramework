@@ -3,6 +3,7 @@ package com.yx.framework.mvvm.view.user
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.yx.framework.R
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val viewModel by viewModels<MainViewModel>()
 
         coin.setOnClickListener {
             viewModel.coin()

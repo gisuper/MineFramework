@@ -3,6 +3,7 @@ package com.yx.framework.mvvm.view.user
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.yx.framework.R
@@ -10,6 +11,7 @@ import com.yx.framework.ext.logD
 import com.yx.framework.ext.startActivity
 import com.yx.framework.ext.toast
 import com.yx.framework.mvvm.viewmodel.LoginViewModel
+import com.yx.framework.mvvm.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -17,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        val viewModel by viewModels<LoginViewModel>()
 
         val usernameString = intent.getStringExtra("username")
 

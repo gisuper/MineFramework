@@ -1,6 +1,7 @@
 package com.yx.framework.mvvm.view.user
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -20,7 +21,7 @@ class RegisterActivity : AppCompatActivity() {
                 this,
                 R.layout.activity_register
             )
-        val model: RegisterModel = ViewModelProvider(this).get(RegisterModel::class.java)
+        val model by viewModels<RegisterModel>()
         binding.registerModel = model
 
         model.userBean.observe(this, Observer {

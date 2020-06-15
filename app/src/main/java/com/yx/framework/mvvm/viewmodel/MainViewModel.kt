@@ -2,6 +2,7 @@ package com.yx.framework.mvvm.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.yx.framework.mvvm.model.api.Response
 import com.yx.framework.mvvm.model.bean.CoinBean
 import com.yx.framework.mvvm.model.repository.UserRepository
@@ -18,19 +19,16 @@ class MainViewModel : ViewModel() {
     val repository = UserRepository()
 
     fun coin() {
-        GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val response = repository.coin()
-            GlobalScope.launch(Dispatchers.Main) {
-                coinBean.value = response
-            }
+            coinBean.value = response
         }
     }
+
     fun logout() {
-        GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val response = repository.logout()
-            GlobalScope.launch(Dispatchers.Main) {
-                coinBean.value = response
-            }
+            coinBean.value = response
         }
     }
 }
