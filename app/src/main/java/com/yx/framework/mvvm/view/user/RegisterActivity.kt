@@ -11,9 +11,14 @@ import com.yx.framework.databinding.ActivityRegisterBinding
 import com.yx.framework.ext.startActivity
 import com.yx.framework.ext.toast
 import com.yx.framework.mvvm.viewmodel.RegisterModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding =

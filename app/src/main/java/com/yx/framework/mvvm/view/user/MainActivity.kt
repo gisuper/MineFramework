@@ -11,9 +11,10 @@ import com.yx.framework.ext.logD
 import com.yx.framework.ext.startActivity
 import com.yx.framework.mvvm.viewmodel.LoginViewModel
 import com.yx.framework.mvvm.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
