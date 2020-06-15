@@ -24,14 +24,14 @@ class LoginActivity : AppCompatActivity() {
 
         val usernameString = intent.getStringExtra("username")
 
-        username.setText(usernameString)
+        account.setText(usernameString)
 
-        regist.setOnClickListener {
+        register.setOnClickListener {
             startActivity(RegisterActivity::class.java)
             finish()
         }
         login.setOnClickListener {
-            viewModel.login(username.text.toString(),password.text.toString())
+            viewModel.login(account.text.toString(),pwd.text.toString())
         }
 
         viewModel.userBean.observe(this, Observer {

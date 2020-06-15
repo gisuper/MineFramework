@@ -27,7 +27,6 @@ class RegisterActivity : AppCompatActivity() {
                 R.layout.activity_register
             )
         val model by viewModels<RegisterModel>()
-        binding.registerModel = model
 
         model.userBean.observe(this, Observer {
             if (it.code >= 0) {
@@ -42,11 +41,11 @@ class RegisterActivity : AppCompatActivity() {
                 toast("注册失败：${it.msg}")
             }
         })
-        binding.submit.setOnClickListener {
+        binding.register.setOnClickListener {
             model.register(
-                binding.etAccount.text.toString(),
-                binding.etPwd.text.toString(),
-                binding.etPwdAgain.text.toString()
+                binding.account.text.toString(),
+                binding.pwd.text.toString(),
+                binding.pwdAgain.text.toString()
             )
         }
         binding.login.setOnClickListener {
