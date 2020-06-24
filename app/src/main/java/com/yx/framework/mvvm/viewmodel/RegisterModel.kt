@@ -1,13 +1,11 @@
 package com.yx.framework.mvvm.viewmodel
 
-import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.material.tabs.TabLayout
 import com.yx.framework.mvvm.model.api.Response
 import com.yx.framework.mvvm.model.bean.UserBean
 import com.yx.framework.mvvm.model.repository.UserRepository

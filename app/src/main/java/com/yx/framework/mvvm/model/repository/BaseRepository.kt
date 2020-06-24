@@ -1,8 +1,6 @@
 package com.yx.framework.mvvm.model.repository
 
-import android.util.Log
 import com.yx.framework.mvvm.model.api.Response
-import com.yx.framework.mvvm.model.bean.UserBean
 import retrofit2.HttpException
 
 /**

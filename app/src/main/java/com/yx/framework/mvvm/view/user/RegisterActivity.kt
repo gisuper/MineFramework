@@ -5,15 +5,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.yx.framework.R
 import com.yx.framework.databinding.ActivityRegisterBinding
 import com.yx.framework.ext.startActivity
 import com.yx.framework.ext.toast
 import com.yx.framework.mvvm.viewmodel.RegisterModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_login.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
@@ -27,7 +24,6 @@ class RegisterActivity : AppCompatActivity() {
                 R.layout.activity_register
             )
         val model by viewModels<RegisterModel>()
-
         model.userBean.observe(this, Observer {
             if (it.code >= 0) {
                 if (it.data.errorCode == 0) {

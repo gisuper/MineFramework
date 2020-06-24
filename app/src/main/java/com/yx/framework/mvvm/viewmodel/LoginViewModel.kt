@@ -10,8 +10,8 @@ import com.yx.framework.mvvm.model.api.Response
 import com.yx.framework.mvvm.model.bean.UserBean
 import com.yx.framework.mvvm.model.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Created by yangxiong on 2020/6/12.

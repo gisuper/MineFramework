@@ -1,6 +1,5 @@
 package com.yx.framework.mvvm.model.api
 
-import java.lang.Exception
 
 /**
  * Created by yangxiong on 2020/6/12.

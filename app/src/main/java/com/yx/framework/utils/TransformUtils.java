@@ -1,9 +1,5 @@
 package com.yx.framework.utils;
 
-/**
- * Created by luyao
- * on 2019/9/20 15:49
- */
 public class TransformUtils {
     public static int bytes2Int(byte[] bytes) {
         if (null == bytes || bytes.length == 0) return 0;

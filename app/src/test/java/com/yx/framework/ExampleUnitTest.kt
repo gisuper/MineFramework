@@ -1,13 +1,9 @@
 package com.yx.framework
 
-import com.google.gson.JsonObject
-import com.yx.framework.net.RetrofitManager
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -18,7 +14,6 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
-
+        println(Math.pow(2.0,2.0))
     }
-
 }

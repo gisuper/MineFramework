@@ -2,20 +2,23 @@ package com.yx.framework.mvvm.view.user
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.yx.framework.R
 import com.yx.framework.ext.logD
 import com.yx.framework.ext.startActivity
 import com.yx.framework.ext.toast
 import com.yx.framework.mvvm.viewmodel.LoginViewModel
-import com.yx.framework.mvvm.viewmodel.MainViewModel
+import com.yx.framework.net.ws.WSManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.*
+
+
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -43,5 +46,12 @@ class LoginActivity : AppCompatActivity() {
                 toast(it.data.errorMsg)
             }
         })
+       lifecycleScope.launch(Dispatchers.IO){
+           WSManager.instance().connect()
+       }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

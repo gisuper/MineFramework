@@ -9,8 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.yx.framework.mvvm.model.api.Response
 import com.yx.framework.mvvm.model.bean.CoinBean
 import com.yx.framework.mvvm.model.repository.UserRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 /**
