@@ -10,6 +10,7 @@ import retrofit2.http.*
 interface UserService {
     //登录
     @POST("user/login")
+    @Headers("chang_url: baidu")
     @FormUrlEncoded
     suspend fun login(
         @Field("username") username: String,

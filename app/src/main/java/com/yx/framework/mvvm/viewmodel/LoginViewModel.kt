@@ -1,5 +1,6 @@
 package com.yx.framework.mvvm.viewmodel
 
+import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
@@ -12,11 +13,13 @@ import com.yx.framework.mvvm.model.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.math.log
 
 /**
  * Created by yangxiong on 2020/6/12.
  */
-class LoginViewModel @ViewModelInject constructor(val repository: UserRepository,
+class LoginViewModel @ViewModelInject constructor(
+    val repository: UserRepository,
     @Assisted private val savedState: SavedStateHandle
 ) : ViewModel() {
     val TAG = "LoginViewModel"
@@ -25,7 +28,9 @@ class LoginViewModel @ViewModelInject constructor(val repository: UserRepository
     fun login(username: String, password: String) {
         viewModelScope.launch {
             val response = repository.login(username, password)
-            userBean.value = response
+            if (response!= null && response.data != null) {
+                userBean.value = response
+            }
         }
     }
 }
