@@ -2,27 +2,21 @@ package com.yx.framework.mvvm.view.user
 
 import android.Manifest
 import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
-import android.text.TextUtils
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.permissionx.guolindev.PermissionX
 import com.yx.framework.R
 import com.yx.framework.ext.logD
 import com.yx.framework.ext.startActivity
 import com.yx.framework.ext.toast
 import com.yx.framework.mvvm.viewmodel.LoginViewModel
-import com.yx.framework.net.ws.WSManager
-import com.yx.framework.utils.FileUtil
-import com.yx.framework.utils.PermissionUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.File
 
 
 @AndroidEntryPoint
@@ -62,29 +56,24 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initPermissions() {
-        var perms = arrayOf<String?>(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        )
-        perms = PermissionUtil.hasNotPermissions(this, perms)
-        if (perms.size == 0) {
-            FileUtil.createLogDir()
-            FileUtil.initXLog()
-        } else {
-            ActivityCompat.requestPermissions(this, perms, 1000)
-        }
-    }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-        grantResults: IntArray) {
-        if (requestCode == 1000 && PermissionUtil.hasNotPermissions(this, permissions).size == 0) {
-            FileUtil.createLogDir()
-            FileUtil.initXLog()
-        } else {
-            finish()
-        }
+        PermissionX.init(this)
+            .permissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE)
+            .onForwardToSettings { scope, deniedList ->
+                scope.showForwardToSettingsDialog(deniedList, "You need to allow necessary permissions in Settings manually", "OK", "Cancel")
+            }
+            .explainReasonBeforeRequest()
+            .onExplainRequestReason { scope, deniedList ->
+                scope.showRequestReasonDialog(deniedList, "Core fundamental are based on these permissions", "OK", "Cancel")
+            }
+            .request { allGranted, grantedList, deniedList ->
+                if (allGranted) {
+                    toast("All permissions are granted")
+                } else {
+                    toast("These permissions are denied: $deniedList")
+                }
+            }
     }
-
 
 
 
