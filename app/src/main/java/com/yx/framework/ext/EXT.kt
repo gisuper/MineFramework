@@ -29,6 +29,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.shenyu.treasure_kotlin.utils.LogUtil
 
 /**
  * Created by yangxiong on 2020/6/12.
@@ -61,7 +62,10 @@ fun Activity.hideKeyboard(view: View) {
 }
 
 fun Any.logD(content:String="null"){
-    Log.d(this::class.java.simpleName,content)
+    LogUtil.d(this::class.java.simpleName,content)
+}
+fun Any.logE(content:String="null"){
+    LogUtil.e(this::class.java.simpleName,content)
 }
 
 val Context.versionName: String

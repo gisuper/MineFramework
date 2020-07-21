@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.permissionx.guolindev.PermissionX
+import com.shenyu.treasure_kotlin.utils.LogUtil
 import com.yx.framework.R
 import com.yx.framework.ext.logD
 import com.yx.framework.ext.startActivity
@@ -43,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.userBean.observe(this, Observer {
             logD(it.data.toString())
+            LogUtil.d(it.data.toString())
             if (it.code == 0 && it.data.errorCode >= 0) {
                 startActivity(MainActivity::class.java)
                 finish()

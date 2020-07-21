@@ -4,6 +4,7 @@ import android.util.Log
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
+import com.shenyu.treasure_kotlin.utils.LogUtil
 import com.yx.framework.common.*
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
@@ -31,7 +32,7 @@ class RetrofitManager private constructor() {
     }
 
     private val logInterceptor = HttpLoggingInterceptor {
-        Log.d("RetrofitManager", "${it}")
+        LogUtil.d("RetrofitManager", "${it}")
     }
 
     init {
@@ -41,7 +42,7 @@ class RetrofitManager private constructor() {
     private val headInterceptor = Interceptor { chain ->
         val request = chain.request()
         var newHttpUrl = request.url().newBuilder().build()
-     Log.d(TAG,"chang_url:${request.header("chang_url")}")
+        LogUtil.d(TAG,"chang_url:${request.header("chang_url")}")
         if ("baidu".equals(request.header("chang_url"))) {
             val oldUrl = request.url()
             val newBaseUrl: HttpUrl = HttpUrl.parse("https://www.baidu.com/")!!
